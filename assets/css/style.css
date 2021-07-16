@@ -1,0 +1,170 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #b65cfc;
+    --secondary-color: #332b94;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    flex-direction: column;
+}
+
+header {
+    padding: 0 25px;
+    font-size: 1rem;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position:sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 9999;
+    background-color: white;
+}
+
+header a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+button {
+    background-color: var(--secondary-color);
+    color: white;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: var(--primary-color);
+}
+
+main {
+    padding: 30px 100px 30px 200px;
+    font-size: 2rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    float: left;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+#questions-page-title {
+    width: 100%;
+}
+
+.align-left {
+    text-align: left;
+    margin: 10px 0;
+}
+
+.align-center {
+    text-align: center;
+    margin: 10px 0;
+}
+
+/* style for multiple choice */
+#multiple-choice {
+    margin-bottom: 35px;
+}
+
+#choices {
+    list-style: none;
+}
+
+#choices li button {
+    width: 100%;
+    text-align: left;
+    font-size: 20px;
+    padding: 7px;
+    margin: 5px 0;
+}
+
+/* style for initials form */
+#record-score {
+    margin-bottom: 35px;
+    font-size: 1.5rem;
+}
+
+#record-score input {
+    font-size: 1.5rem;
+}
+
+#record-score button {
+    font-size: 1.5rem;
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+#record-score button:hover {
+    background-color: var(--primary-color);
+}
+
+/* style for intro page */
+#intro-page {
+    margin-bottom: 35px;
+    font-size: 1rem;
+}
+
+#intro-page div {
+    display: flex;
+    width: 100%;
+}
+
+#intro-page div p {
+    margin: 0 15% 15px 15%;
+    text-align: center;
+    font-weight: bold;
+}
+
+#intro-page div button {
+    margin: 0 auto;
+    font-size: 1.5rem;
+    padding: 2px 30px;
+}
+
+/* style for high-scores */
+#high-scores {
+    margin-bottom: 35px;
+    font-size: 1rem;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+#high-scores button {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.score {
+    display: flex;
+    width: 80%;
+    background-color: #BBA9E2;
+    margin-bottom: 15px;
+}
+
+.score p {
+    margin: 3px 0;
+}
+
+/* style for checker */
+#checker {
+    font-style: italic;
+    border-top: 2px solid;
+    width: 90%;
+    color: gray;
+}
+
+#checker p {
+    margin: 5px 0 0 7px;
+    font-size: 2rem;
+}
