@@ -1,27 +1,28 @@
 var counter = 75;
 var timer;
+var questionNumber = 0;
+var questionsArr = ["Commonly used data types DO Not Include:", "The condition in an if / else statement is enclosed with ________.", "Arrays in JavaScript can be used to store _________.", "String values must be enclosed within ______ when being assigned to variables.", "A very useful tool used during development and debugging for printing content to the debugger is:"];
+var choicesArr = [["strings", "booleans","alerts","numbers"],["quotes", "curly brackets", "parenthesis", "square brackets"],["numbers and strings", "other arrays", "booleans", "all of the above"],["commas", "curly brackets", "quotes", "parenthesis"],["JavaScript", "terminal/bash", "for loops", "console.log"]];
+var answersArr = ["alerts", "parenthesis", "all of the above", "quotes", "console.log"];
 
 var linkTimerEl = document.querySelector("header");
-var questionsOrTitlePageEl = document.querySelector("#questions-page-title");
-var stageEl = document.querySelector(".stage");
+var questionsOrTitlePageContainerEl = document.querySelector("#questions-page-title");
+var stageContainerEl = document.querySelector(".stage");
+var checkerContainerEl = document.querySelector("#checker");
 
 
-
-var createIntroPageEl = function(){
+// function to create the startup page
+var createIntroPage = function(){
+    removeElements();
 
     // create game title header element
     var gameTitleEl = document.createElement("h3");
     gameTitleEl.textContent = "Code Quiz Challenge";
     gameTitleEl.className = "align-center";
-    questionsOrTitlePageEl.appendChild(gameTitleEl);
-
-    // create game start content container element
-    // var gameStartContentContainerEl = document.createElement("div");
-    // gameStartContentContainerEl.className = "stage";
-    // gameStartContentContainerEl.id = "intro-page";
+    questionsOrTitlePageContainerEl.appendChild(gameTitleEl);
 
     // set stage element id to intro-page
-    stageEl.id = "intro-page"
+    stageContainerEl.id = "intro-page";
 
     // create game description container element
     var gameDescriptionContainerEl = document.createElement("div");
@@ -30,7 +31,7 @@ var createIntroPageEl = function(){
     var gameDescriptionEl = document.createElement("p");
     gameDescriptionEl.textContent = "Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize you score/time by ten seconds!";
     gameDescriptionContainerEl.appendChild(gameDescriptionEl);
-    stageEl.appendChild(gameDescriptionContainerEl);
+    stageContainerEl.appendChild(gameDescriptionContainerEl);
 
     // create game start button container element
     var gameStartButtonContainerEl = document.createElement("div");
@@ -38,12 +39,9 @@ var createIntroPageEl = function(){
     // create game start button element
     var gameStartButtonEl = document.createElement("button");
     gameStartButtonEl.textContent =  "Start Quiz";
-    gameStartButtonEl.id = "startBtn";
+    gameStartButtonEl.className = "startBtn";
     gameStartButtonContainerEl.appendChild(gameStartButtonEl);
-    stageEl.appendChild(gameStartButtonContainerEl);
-
-    var startButton = document.getElementById("startBtn");
-    startButton.onclick = startTimer;
+    stageContainerEl.appendChild(gameStartButtonContainerEl);
 };
 
 // function to call setInterval and start timer
@@ -62,6 +60,91 @@ var displayTimer = function(){
     counter--;
 };
 
+// function to start coding quiz
+var startCodingQuiz = function(){
+    startTimer();
+    removeElements();
+    generateQuestions();
+};
+
+// function to generate questions
+var generateQuestions = function() {
+
+    var questionEl = document.createElement("h3");
+    questionEl.textContent = questionsArr[questionNumber];
+    questionEl.className = "align-left";
+    questionsOrTitlePageContainerEl.appendChild(questionEl);
+
+    stageContainerEl.id = "multiple-choice";
+    var multipleChoiceEl = document.createElement("ul");
+    multipleChoiceEl.id = "choices";
+
+    for (var i = 0; i < 4; i++){
+        multipleChoiceEl.appendChild(generateMultipleChoices(questionNumber, i));
+    }
+
+    stageContainerEl.appendChild(multipleChoiceEl);
+};
+
+var btnClickedHandler = function(event){
+    var btnClicked = event.target;
+    
+    if (btnClicked.className === "startBtn"){
+        startCodingQuiz();
+    }
+    
+    if(btnClicked.className === "choice"){
+        checkAnswer(btnClicked.textContent);
+    }
+}
+
+var removeElements = function() {
+    // remove question or page title
+    while (questionsOrTitlePageContainerEl.hasChildNodes()){
+        questionsOrTitlePageContainerEl.removeChild(questionsOrTitlePageContainerEl.lastChild);
+    }
+
+    // remove all element inside stageContainerEl
+    while (stageContainerEl.hasChildNodes()){
+        stageContainerEl.removeChild(stageContainerEl.lastChild);
+    }
+
+    while (checkerContainerEl.hasChildNodes()){
+        checkerContainerEl.removeChild(checkerContainerEl.lastChild); 
+    }
+      
+};
+
+// function to generate the choices
+var generateMultipleChoices = function(qNum, cNum) {
+    var choiceEl = document.createElement("li");
+    var choiceBtnEl = document.createElement("button");
+    choiceBtnEl.textContent = choicesArr[qNum][cNum];
+    choiceBtnEl.className = "choice";
+    //debugger;
+    choiceEl.appendChild(choiceBtnEl);
+    return choiceEl;
+};
+
+var checkAnswer = function(answer){
+    var checkAnswerEl = document.createElement("p");
+
+    console.log(answer);
+    console.log(answersArr[questionNumber]);
+    if (answer === answersArr[questionNumber]){
+        checkAnswerEl.textContent = "Correct!";
+    }
+    else {
+        checkAnswerEl.textContent = "Wrong!";
+    }
+
+    checkerContainerEl.appendChild(checkAnswerEl);
+
+    questionNumber++;
+    removeElements();
+    generateQuestions();
+};
 
 
-createIntroPageEl();
+createIntroPage();
+stageContainerEl.addEventListener("click", btnClickedHandler);

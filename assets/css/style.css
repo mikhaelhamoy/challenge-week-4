@@ -159,12 +159,12 @@ main {
 /* style for checker */
 #checker {
     font-style: italic;
-    border-top: 2px solid;
     width: 90%;
     color: gray;
 }
 
 #checker p {
+    border-top: 2px solid;
     margin: 5px 0 0 7px;
     font-size: 2rem;
 }
