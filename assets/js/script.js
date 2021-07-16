@@ -13,7 +13,7 @@ var checkerContainerEl = document.querySelector("#checker");
 
 // function to create the startup page
 var createIntroPage = function(){
-    removeElements();
+    removeContents();
 
     // create game title header element
     var gameTitleEl = document.createElement("h3");
@@ -47,6 +47,7 @@ var createIntroPage = function(){
 // function to call setInterval and start timer
 var startTimer = function() {
     timer = setInterval(displayTimer, 1000);
+    
 };
 
 // function to display time left
@@ -63,7 +64,7 @@ var displayTimer = function(){
 // function to start coding quiz
 var startCodingQuiz = function(){
     startTimer();
-    removeElements();
+    removeContents();
     generateQuestions();
 };
 
@@ -98,7 +99,7 @@ var btnClickedHandler = function(event){
     }
 }
 
-var removeElements = function() {
+var removeContents = function() {
     // remove question or page title
     while (questionsOrTitlePageContainerEl.hasChildNodes()){
         questionsOrTitlePageContainerEl.removeChild(questionsOrTitlePageContainerEl.lastChild);
@@ -107,12 +108,13 @@ var removeElements = function() {
     // remove all element inside stageContainerEl
     while (stageContainerEl.hasChildNodes()){
         stageContainerEl.removeChild(stageContainerEl.lastChild);
-    }
+    } 
+};
 
+var removeChecker = function(){
     while (checkerContainerEl.hasChildNodes()){
         checkerContainerEl.removeChild(checkerContainerEl.lastChild); 
     }
-      
 };
 
 // function to generate the choices
@@ -129,19 +131,20 @@ var generateMultipleChoices = function(qNum, cNum) {
 var checkAnswer = function(answer){
     var checkAnswerEl = document.createElement("p");
 
-    console.log(answer);
-    console.log(answersArr[questionNumber]);
     if (answer === answersArr[questionNumber]){
         checkAnswerEl.textContent = "Correct!";
     }
     else {
         checkAnswerEl.textContent = "Wrong!";
+        counter -= 10;
     }
 
+    removeChecker();
     checkerContainerEl.appendChild(checkAnswerEl);
+    console.log(checkerContainerEl);
 
     questionNumber++;
-    removeElements();
+    removeContents();
     generateQuestions();
 };
 
