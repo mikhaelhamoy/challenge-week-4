@@ -100,13 +100,8 @@ main {
 
 #record-score button {
     font-size: 1.5rem;
-    background-color: var(--secondary-color);
-    color: white;
 }
 
-#record-score button:hover {
-    background-color: var(--primary-color);
-}
 
 /* style for intro page */
 #intro-page {
@@ -148,8 +143,11 @@ main {
 .score {
     display: flex;
     width: 80%;
-    background-color: #BBA9E2;
     margin-bottom: 15px;
+}
+
+.odd-num {
+    background-color: #BBA9E2;
 }
 
 .score p {

@@ -10,15 +10,15 @@
 <body>
     <!-- "view high scores" link and timer-->
     <header>
-        <a id="high-score" href="#!">View high scores</a>
-        <p>Time: <span id="timer">75</span></p>
+        <a id="high-score-link" href="#!">View high scores</a>
+        <p id="timer-label">Time: <span id="timer">75</span></p>
     </header>
 
     <main>
         <!-- questions/page title container -->
         <div id="questions-page-title">
         </div>
-
+        <!-- main stage container -->
         <div class="stage"></div>
         
         <!-- multiple choice container 
@@ -52,6 +52,17 @@
         -->
         
         <!-- answer checker container -->
+
+        <!-- <div id="record-score">
+            <p>Your final score is 22.</p>
+            <form >
+                <label for="initials">Enter initials:
+                    <input type="text" id="initials" name="initials" />
+                </label>
+                <button>Submit</button>
+            </form>
+        </div> -->
+
         <div id="checker"></div>
         
     </main>
